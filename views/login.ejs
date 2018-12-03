@@ -1,0 +1,31 @@
+<!-- KIRJAUTUMISSIVU -->
+
+<%- include('head'); -%>
+    <body>
+        <%- include('header'); -%>
+            <div class="valikkorivi">
+                <a href="../">ETUSIVU</a>
+                <a href="../register">REKISTERÖIDY</a>
+            </div>
+        </header>
+        <div class="container">
+            <h1>Kirjaudu sisään</h1>
+
+            <form action="/login" method="post">
+                <ul>
+                    <li>
+                        <label for="username">Käyttäjätunnus</label>
+                        <input id="username" type="text" name="username">
+                    </li>
+                    <li>
+                        <label for="password">Salasana</label>
+                        <input id="password" type="password" name="password" >
+                    </li>
+                    <li>
+                        <button type="submit">KIRJAUDU</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!-- REKISTERÖIDY -->
+
+<%- include('head'); -%>
+    <body>
+        <%- include('header'); -%>
+            <div class="valikkorivi">
+                <a href="../login">KIRJAUDU SISÄÄN</a>
+                <a href="../">ETUSIVU</a>
+            </div>
+        </header>
+        <div class="container">
+            <h1>Rekisteröidy</h1>
+            <form action="/dbusers" method="post">
+                <ul>
+                    <li>
+                        <label for="firstname">Etunimi</label>
+                        <input id="firstname" type="text" name="firstname">
+                    </li>
+                    <li>
+                        <label for="lastname">Sukunimi</label>
+                        <input id="lastname" type="text" name="lastname">
+                    </li>
+                    <li>
+                        <label for="username">Käyttäjätunnus</label>
+                        <input id="username" type="text" name="username">
+                    </li>
+                    <li>
+                        <label for="password">Salasana</label>
+                        <input id="password" type="password" name="password" >
+                    </li>
+                    <li>
+                        <button type="submit">REKISTERÖIDY</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </body>
+</html>

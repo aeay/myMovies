@@ -1,0 +1,49 @@
+<!-- ELOKUVAN TIETOSIVU -->
+
+<%- include('head'); -%>
+    <body>
+        <%- include('header'); -%>
+            <div class="valikkorivi">
+            <a href="../logout" style="margin: 10px;">KIRJAUDU ULOS</a>
+             </div>
+        </header>
+        <div class="container">
+            <form action="/search" method="post">
+                <input name="movie" type="text" placeholder="Hae elokuvaa" required>
+                <button type="submit" style="margin-top:2px">ETSI</button>
+            </form>
+            <% if(movie !== null){ %>
+                <h1><%= movie %> (<%= year %>)</h1>
+                <div style="display:flex; flex-direction:row; width:60%; margin: auto">
+                    <div>
+                        <img src="<%= poster %>" style="width:250px;padding-right:20px"/>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="moviedata"><%= plot %></li>
+                            <li class="moviedata">Näyttelijät: <%= actors %></li>
+                            <li class="moviedata">Ohjaaja: <%= director %></li>
+                            <li class="moviedata">Käsikirjoittaja: <%= writer %> </li>
+                            <li class="moviedata">Kieli: <%= language %></li>
+                            <li class="moviedata">Maa: <%= country %></li>
+                            <li class="moviedata">Genre: <%= genre %></li>
+                            <li class="moviedata">Kesto: <%= runtime %></li>
+                            <li class="moviedata">Ikäraja: <%= rated %></li>
+                        </ul>
+                    </div>
+                </div>
+            <%};%>
+
+            <% if(error !== null){ %>
+                <p><%= error %></p>
+            <% } %>
+    
+            <form action="/dbmovies" method="post">
+                <input name="title" type="text" value="<%= movie %>" style="display:none;" />
+                <input name="review" type="text" placeholder="Arvostelu" />
+                <input name="username" type="text" value="<%= username %>" style="display:none;" />
+                <button type="submit">LISÄÄ ARVOSTELU</button>
+            </form>
+        </div>
+    </body>
+</html>

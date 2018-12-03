@@ -1,0 +1,66 @@
+<!-- KIRJAUTUNEEN KÄYTTÄJÄN ETUSIVU -->
+
+<%- include('head'); -%>
+    <body>
+        <%- include('header'); -%>
+            <div class="valikkorivi">
+                    <a href="../logout" style="margin: 10px;">KIRJAUDU ULOS</a>
+            </div>
+        </header>
+        <div class="container">
+            <div style="display:flex; flex-direction:row; margin:auto; width:60%">
+                <h1>Hei, <%= username %></h1>
+                <a href="../search">ETSI ELOKUVA</a>
+                <a href="../myreviews">OMAT ARVOSTELUT</a>
+            </div>
+            <% if (movies.length > 0) {%>
+            <i class="fas fa-search"></i><input type="text" id="movieFilter" onkeyup="filterMovies()" placeholder="Hae elokuvaa nimellä.." title="Elokuvan nimi">
+                <table id="movielist">
+                    <thead>
+                        <tr>
+                            <th style="display:none">Id</th>
+                            <th>Elokuva</th>
+                            <th>Arvostelu</th>
+                            <th>Arvioija</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% movies.forEach((movie, index) => { %>
+                            <tr>
+                                <th scope="row" style="display:none"><%= movie.id %></th>
+                                <td><%= movie.title %></td>
+                                <td><%= movie.review %></td>
+                                <td><%= movie.username %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>Ei vielä arvosteltuja elokuvia.</p>
+                <form action="/" method="get">
+                    <button name="lisaa" type="submit">Lisää arvostelu</button>  
+                </form>
+            <% } %>
+            <script>
+                function filterMovies() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("movieFilter");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("movielist");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        } else {
+                        tr[i].style.display = "none";
+                        }
+                    }       
+                    }
+                }
+            </script>
+        </div>
+    </body>
+</html>
